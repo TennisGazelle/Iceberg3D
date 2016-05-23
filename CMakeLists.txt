@@ -46,7 +46,7 @@ include_directories( Iceberg3D/include/
                     Iceberg3D/dependencies/bullet/src/
 					Iceberg3D/dependencies/freetype2/include/
                     Iceberg3D/dependencies/glad/include/
-                    Iceberg3D/dependencies/glfw/include/
+                    Iceberg3D/dependencies/sdl/include/
                     Iceberg3D/dependencies/glm/
                     Iceberg3D/dependencies/stb/)
 
@@ -63,8 +63,7 @@ source_group("Headers" FILES ${PROJECT_HEADERS})
 source_group("Sources" FILES ${PROJECT_SOURCES})
 source_group("Dependencies" FILES ${DEPENDENCY_SOURCES})
 
-add_definitions(-DGLFW_INCLUDE_NONE
-                -DPROJECT_SOURCE_DIR=\"${PROJECT_SOURCE_DIR}\")
+add_definitions(-DPROJECT_SOURCE_DIR=\"${PROJECT_SOURCE_DIR}\")
 
 add_library(${PROJECT_NAME} ${PROJECT_HEADERS}
 							${PROJECT_SOURCES}
