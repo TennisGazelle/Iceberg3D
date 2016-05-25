@@ -2,7 +2,6 @@
 #define CAMERA_H
 
 #include "Game.h"
-#include "InputManager.h"
 
 namespace iceberg
 {

@@ -3,8 +3,6 @@
 
 #include "GlobalIncludes.h"
 #include "StateMachine.h"
-#include "WindowManager.h"
-#include "InputManager.h"
 
 namespace iceberg
 {
@@ -25,11 +23,9 @@ namespace iceberg
         float delta_time() const;
         void change_state(GameState* state) const;
 
-        WindowManager* window_manager() const;
         static void handle_error(const std::string &errorMessage);
 
     private:
-        std::shared_ptr<WindowManager> windowManager_;
         std::shared_ptr<StateMachine> stateMachine_;
         std::chrono::time_point<std::chrono::high_resolution_clock> previousTime_, currentTime_;
 

@@ -9,8 +9,13 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake-modules")
 if(WIN32)
 	set(SDL2_PATH Iceberg3D/dependencies/sdl)
 endif(WIN32)
-
 find_package(SDL2 REQUIRED)
+
+if(WIN32)
+	set(FREETYPE_LIBRARY Iceberg3D/dependencies/freetype2/lib)
+	set(FREETYPE_INCLUDE_DIRS Iceberg3D/dependencies/freetype2/include)
+endif(WIN32)
+find_package(FREETYPE REQUIRED)
 
 option(ASSIMP_BUILD_ASSIMP_TOOLS OFF)
 option(ASSIMP_BUILD_SAMPLES OFF)
@@ -23,15 +28,6 @@ option(BUILD_EXTRAS OFF)
 option(BUILD_OPENGL3_DEMOS OFF)
 option(BUILD_UNIT_TESTS OFF)
 add_subdirectory(Iceberg3D/dependencies/bullet)
-
-add_subdirectory(Iceberg3D/dependencies/boxer)
-
-if(WIN32)
-	set(FREETYPE_LIBRARY Iceberg3D/dependencies/freetype2/lib)
-	set(FREETYPE_INCLUDE_DIRS Iceberg3D/dependencies/freetype2/include)
-endif(WIN32)
-
-find_package(FREETYPE REQUIRED)
 
 if(MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
@@ -47,7 +43,6 @@ endif()
 
 include_directories( Iceberg3D/include/
                     Iceberg3D/dependencies/assimp/include/
-					Iceberg3D/dependencies/boxer/include/
                     Iceberg3D/dependencies/bullet/src/
 					Iceberg3D/dependencies/freetype2/include/freetype2/
 					Iceberg3D/dependencies/freetype2/include/
@@ -77,7 +72,7 @@ add_library(${PROJECT_NAME} ${PROJECT_HEADERS}
                             ${PROJECT_CONFIGS}
                             ${DEPENDENCY_SOURCES})
 
-target_link_libraries(${PROJECT_NAME} assimp glfw Boxer freetype ${GLAD_LIBRARIES}
+target_link_libraries(${PROJECT_NAME} assimp glfw ${FREETYPE_LIBRARIES} ${GLAD_LIBRARIES}
                       BulletDynamics BulletCollision LinearMath)
 
 option (ICEBERG_BUILD_SANDBOX "Build testing sandbox" OFF)

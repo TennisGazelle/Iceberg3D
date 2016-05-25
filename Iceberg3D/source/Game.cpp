@@ -1,15 +1,14 @@
 #include "Game.h"
-#include "GLWindowManager.h"
 
 using namespace iceberg;
 
 Game::Game(Backend backend)
     :stateMachine_(std::make_shared<StateMachine>())
 {
+    // TODO: Initialize SDL here
     switch(backend)
     {
     case OPENGL:
-        windowManager_ = std::make_shared<icebergGL::GLWindowManager>();
         break;
 
     default:
@@ -26,11 +25,6 @@ Game::~Game()
 {
 }
 
-WindowManager* Game::window_manager() const
-{
-    return windowManager_.get();
-}
-
 void Game::change_state(GameState* state) const
 {
     stateMachine_->change_state(state);
@@ -44,19 +38,9 @@ void Game::update()
     deltaTime_ = std::chrono::duration_cast<std::chrono::duration<float>>(currentTime_ - previousTime_).count();
     previousTime_ = std::chrono::high_resolution_clock::now();
 
-    windowManager_->update();
-
-    if (windowManager_->has_active_windows() && windowManager_->input_manager()->key_pressed(ICEBERG_KEY_ESCAPE))
-    {
-        windowManager_->close_current_window();
-
-    }
-
-    if (!windowManager_->has_active_windows())
-    {
-        running_ = false;
-        return;
-    }
+    // TODO: Update Windows
+    // TODO: Check if last or main window is closed 
+    // TODO: Set running_ to false if there are no windows left, or if flagged for exit 
 
     stateMachine_->update();
 }
@@ -66,13 +50,13 @@ void Game::draw() const
     if (!running_) return;
 
     stateMachine_->draw();
-    windowManager_->refresh();
+
+    //TODO: Swap buffers
 }
 
 void Game::run()
 {
-    if (!windowManager_->has_active_windows()) return;
-
+    // TODO: Modify game loop here
     running_ = true;
     while (running_)
     {
@@ -88,5 +72,5 @@ float Game::delta_time() const
 
 void Game::handle_error(const std::string &errorMessage)
 {
-    boxer::show(errorMessage.c_str(), "Error", boxer::Style::Warning);
+    // TODO: Handle errors, preferably with SDL MessageBoxes
 }
