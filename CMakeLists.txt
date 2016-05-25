@@ -1,27 +1,33 @@
 cmake_minimum_required(VERSION 3.0)
 project(Iceberg3D)
 
+# Ensure C++14 support
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED on)
 
+# Set path to cmake modules
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake-modules")
 
+# Include SDL2, using windows binaries if necessary
 if(WIN32)
 	set(SDL2_PATH Iceberg3D/dependencies/sdl)
 endif(WIN32)
 find_package(SDL2 REQUIRED)
 
+# Include FreeType2, using windows binaries if necessary
 if(WIN32)
 	set(FREETYPE_LIBRARY Iceberg3D/dependencies/freetype2/lib)
 	set(FREETYPE_INCLUDE_DIRS Iceberg3D/dependencies/freetype2/include)
 endif(WIN32)
 find_package(FREETYPE REQUIRED)
 
+# Include Assimp
 option(ASSIMP_BUILD_ASSIMP_TOOLS OFF)
 option(ASSIMP_BUILD_SAMPLES OFF)
 option(ASSIMP_BUILD_TESTS OFF)
 add_subdirectory(Iceberg3D/dependencies/assimp)
 
+# Include Bullet physics
 option(BUILD_BULLET2_DEMOS OFF)
 option(BUILD_CPU_DEMOS OFF)
 option(BUILD_EXTRAS OFF)
@@ -42,14 +48,14 @@ else()
 endif()
 
 include_directories( Iceberg3D/include/
-                    Iceberg3D/dependencies/assimp/include/
-                    Iceberg3D/dependencies/bullet/src/
-					Iceberg3D/dependencies/freetype2/include/freetype2/
-					Iceberg3D/dependencies/freetype2/include/
-                    Iceberg3D/dependencies/glad/include/
-                    Iceberg3D/dependencies/sdl/include/
-                    Iceberg3D/dependencies/glm/
-                    Iceberg3D/dependencies/stb/)
+                     Iceberg3D/dependencies/assimp/include/
+                     Iceberg3D/dependencies/bullet/src/
+					 Iceberg3D/dependencies/freetype2/include/freetype2/
+					 Iceberg3D/dependencies/freetype2/include/
+                     Iceberg3D/dependencies/glad/include/
+                     Iceberg3D/dependencies/sdl/include/
+                     Iceberg3D/dependencies/glm/
+                     Iceberg3D/dependencies/stb/)
 
 file(GLOB DEPENDENCY_SOURCES Iceberg3D/dependencies/glad/src/glad.c)
 file(GLOB PROJECT_HEADERS Iceberg3D/include/*.*)
@@ -64,16 +70,16 @@ source_group("Headers" FILES ${PROJECT_HEADERS})
 source_group("Sources" FILES ${PROJECT_SOURCES})
 source_group("Dependencies" FILES ${DEPENDENCY_SOURCES})
 
-add_definitions(-DPROJECT_SOURCE_DIR=\"${PROJECT_SOURCE_DIR}\")
-
 add_library(${PROJECT_NAME} ${PROJECT_HEADERS}
 							${PROJECT_SOURCES}
                             ${PROJECT_SHADERS}
                             ${PROJECT_CONFIGS}
                             ${DEPENDENCY_SOURCES})
 
-target_link_libraries(${PROJECT_NAME} assimp glfw ${FREETYPE_LIBRARIES} ${GLAD_LIBRARIES}
-                      BulletDynamics BulletCollision LinearMath)
+target_link_libraries(${PROJECT_NAME} ${FREETYPE_LIBRARIES}
+									  ${GLAD_LIBRARIES} 
+									  assimp
+									  BulletDynamics BulletCollision LinearMath)
 
 option (ICEBERG_BUILD_SANDBOX "Build testing sandbox" OFF)
 if (ICEBERG_BUILD_SANDBOX)
