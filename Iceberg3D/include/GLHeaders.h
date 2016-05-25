@@ -3,7 +3,6 @@
 
 // GLAD and GLFW
 #include <glad/glad.h>
-#include <GLFW/glfw3.h>
 
 // GLM
 #define GLM_FORCE_RADIANS
