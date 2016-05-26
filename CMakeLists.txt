@@ -22,18 +22,10 @@ endif(WIN32)
 find_package(Freetype REQUIRED)
 
 # Include Assimp
-option(ASSIMP_BUILD_ASSIMP_TOOLS OFF)
-option(ASSIMP_BUILD_SAMPLES OFF)
-option(ASSIMP_BUILD_TESTS OFF)
-add_subdirectory(Iceberg3D/dependencies/assimp)
+find_package(Assimp REQUIRED)
 
 # Include Bullet physics
-option(BUILD_BULLET2_DEMOS OFF)
-option(BUILD_CPU_DEMOS OFF)
-option(BUILD_EXTRAS OFF)
-option(BUILD_OPENGL3_DEMOS OFF)
-option(BUILD_UNIT_TESTS OFF)
-add_subdirectory(Iceberg3D/dependencies/bullet)
+find_package(Bullet REQUIRED)
 
 if(MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
@@ -78,8 +70,8 @@ add_library(${PROJECT_NAME} ${PROJECT_HEADERS}
 
 target_link_libraries(${PROJECT_NAME} ${FREETYPE_LIBRARIES}
 									  ${GLAD_LIBRARIES}
-									  assimp
-									  BulletDynamics BulletCollision LinearMath)
+                                      ${ASSIMP_LIBRARIES}
+                                      ${BULLET_LIBRARIES})
 
 option (ICEBERG_BUILD_SANDBOX "Build testing sandbox" OFF)
 if (ICEBERG_BUILD_SANDBOX)
