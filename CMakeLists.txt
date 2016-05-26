@@ -19,7 +19,7 @@ if(WIN32)
 	set(FREETYPE_LIBRARY Iceberg3D/dependencies/freetype2/lib)
 	set(FREETYPE_INCLUDE_DIRS Iceberg3D/dependencies/freetype2/include)
 endif(WIN32)
-find_package(FREETYPE REQUIRED)
+find_package(Freetype REQUIRED)
 
 # Include Assimp
 option(ASSIMP_BUILD_ASSIMP_TOOLS OFF)
@@ -77,7 +77,7 @@ add_library(${PROJECT_NAME} ${PROJECT_HEADERS}
                             ${DEPENDENCY_SOURCES})
 
 target_link_libraries(${PROJECT_NAME} ${FREETYPE_LIBRARIES}
-									  ${GLAD_LIBRARIES} 
+									  ${GLAD_LIBRARIES}
 									  assimp
 									  BulletDynamics BulletCollision LinearMath)
 
