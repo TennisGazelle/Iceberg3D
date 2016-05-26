@@ -14,14 +14,21 @@ if(WIN32)
 endif(WIN32)
 find_package(SDL2 REQUIRED)
 
-# Include FreeType2, using windows binaries if necessary
+# Include FreeType2
+message("<Finding FreeType2>")
 if(WIN32)
-	set(FREETYPE_LIBRARY Iceberg3D/dependencies/freetype2/lib)
 	set(FREETYPE_INCLUDE_DIRS Iceberg3D/dependencies/freetype2/include)
+	set(FREETYPE_LIBRARY Iceberg3D/dependencies/freetype2/lib)
 endif(WIN32)
 find_package(Freetype REQUIRED)
+message("</Finding FreeType2>")
 
 # Include Assimp
+if(WIN32)
+	option(assimp_FIND_QUIETLY OFF)
+	set(ASSIMP_INCLUDE_DIRS Iceberg3D/dependencies/dependencies/assimp/include)
+	set(ASSIMP_LIBRARIES Iceberg3D/dependencies/dependencies/assimp/lib)
+endif(WIN32)
 find_package(Assimp REQUIRED)
 
 # Include Bullet physics
