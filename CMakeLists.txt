@@ -77,7 +77,7 @@ source_group("Headers" FILES ${PROJECT_HEADERS})
 source_group("Sources" FILES ${PROJECT_SOURCES})
 source_group("Dependencies" FILES ${DEPENDENCY_SOURCES})
 
-add_library(${PROJECT_NAME} ${PROJECT_HEADERS}
+add_executable(${PROJECT_NAME} ${PROJECT_HEADERS}
 							${PROJECT_SOURCES}
                             ${PROJECT_SHADERS}
                             ${PROJECT_CONFIGS}
