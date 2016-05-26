@@ -1,5 +1,3 @@
-message("<FindAssimp.cmake>")
-
 find_path(
   ASSIMP_INCLUDE_DIRS
   NAMES postprocess.h scene.h version.h config.h cimport.h
@@ -23,5 +21,3 @@ else (ASSIMP_FOUND)
 	message(FATAL_ERROR "Could not find asset importer library")
   endif (ASSIMP_FIND_REQUIRED)
 endif (ASSIMP_FOUND)
-
-message("</FindAssimp.cmake>")
