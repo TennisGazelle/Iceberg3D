@@ -27,8 +27,6 @@ namespace iceberg
 
     private:
 
-        void build_collision_shape();
-
         std::shared_ptr<VAO> meshVAO_;
         std::shared_ptr<Buffer> meshVBO_;
         std::shared_ptr<Buffer> meshIBO_;
@@ -36,9 +34,6 @@ namespace iceberg
         std::vector<Vertex> vertices_;
         std::vector<GLuint> indices_;
         std::vector<Texture*> textures_;
-
-        std::shared_ptr<btTriangleMesh> collisionMesh_;
-        std::shared_ptr<btCollisionShape> collisionShape_;
     };
 }
 #endif

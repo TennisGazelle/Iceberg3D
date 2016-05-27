@@ -13,7 +13,6 @@ Mesh::Mesh(std::vector<Vertex> vertices, std::vector<GLuint> indices, const std:
     meshIBO_ = std::make_shared<Buffer>();
 
     setup_mesh();
-    build_collision_shape();
 }
 
 Mesh::~Mesh()
@@ -83,28 +82,4 @@ void Mesh::setup_mesh()
     meshVAO_->configure_attribute(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, tex_coords));
 
     meshVAO_->unbind();
-}
-
-void Mesh::build_collision_shape()
-{
-    collisionMesh_ = std::make_shared<btTriangleMesh>();
-    btVector3 triArray[3];
-    for(size_t i = 2; i < indices_.size(); i += 3)
-    {
-        int currentIndex = indices_[i];
-        triArray[0] = btVector3(vertices_[currentIndex - 2].position.x,
-                                vertices_[currentIndex - 2].position.y,
-                                vertices_[currentIndex - 2].position.z);
-
-        triArray[1] = btVector3(vertices_[currentIndex - 1].position.x,
-                                vertices_[currentIndex - 1].position.y,
-                                vertices_[currentIndex - 1].position.z);
-
-        triArray[2] = btVector3(vertices_[currentIndex].position.x,
-                                vertices_[currentIndex].position.y,
-                                vertices_[currentIndex].position.z);
-
-        collisionMesh_->addTriangle(triArray[0], triArray[1], triArray[2]);
-    }
-    collisionShape_ = std::make_shared<btBvhTriangleMeshShape>(collisionMesh_.get(), true);
 }

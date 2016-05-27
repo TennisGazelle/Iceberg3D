@@ -10,9 +10,6 @@
 #include <assimp/postprocess.h>
 #include <assimp/color4.h>
 
-// Bullet
-#include <btBulletDynamicsCommon.h>
-
 // Freetype 2
 #include <ft2build.h>
 #include FT_FREETYPE_H
