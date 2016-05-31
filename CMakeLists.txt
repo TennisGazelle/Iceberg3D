@@ -8,6 +8,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED on)
 # Set path to cmake modules
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake-modules")
 
+# Include OpenGL physics
+message("<Finding OpenGL>")
+find_package(OpenGL REQUIRED)
+message("</Finding OpenGL>")
+
 # Include SDL2, using windows binaries if necessary
 message("<Finding SDL2>")
 find_package(SDL2 CONFIG REQUIRED)
@@ -27,6 +32,11 @@ message("</Finding Assimp>")
 message("<Finding Bullet>")
 find_package(Bullet REQUIRED)
 message("</Finding Bullet>")
+
+# Include glm
+message("<Finding glm>")
+find_package(glm CONFIG REQUIRED)
+message("</Finding glm>")
 
 if(MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
