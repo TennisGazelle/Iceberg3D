@@ -65,8 +65,8 @@ include_directories( Iceberg3D/include/
                      Iceberg3D/dependencies/stb/)
 
 file(GLOB DEPENDENCY_SOURCES Iceberg3D/dependencies/glad/src/glad.c)
-file(GLOB PROJECT_HEADERS Iceberg3D/include/*.*)
-file(GLOB PROJECT_SOURCES Iceberg3D/source/*.*)
+file(GLOB PROJECT_HEADERS Iceberg3D/source/*.h)
+file(GLOB PROJECT_SOURCES Iceberg3D/source/*.cpp)
 file(GLOB PROJECT_CONFIGS CMakeLists.txt
                           Readme.md
                          .gitattributes
