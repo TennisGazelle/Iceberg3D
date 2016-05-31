@@ -1,7 +1,3 @@
-[submodule "Iceberg3D/dependencies/glm"]
-	path = Iceberg3D/dependencies/glm
-	url = https://github.com/g-truc/glm
-    branch = master
 [submodule "Iceberg3D/dependencies/stb"]
 	path = Iceberg3D/dependencies/stb
 	url = https://github.com/nothings/stb

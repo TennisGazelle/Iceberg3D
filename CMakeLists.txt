@@ -45,8 +45,8 @@ include_directories( Iceberg3D/include/
                      ${SDL2_INCLUDE_DIR}
                      ${BULLET_INCLUDE_DIRS}
                      ${FREETYPE_INCLUDE_DIRS}
+                     ${GLM_INCLUDE_DIRS}
                      Iceberg3D/dependencies/glad/include/
-                     Iceberg3D/dependencies/glm/
                      Iceberg3D/dependencies/stb/)
 
 file(GLOB DEPENDENCY_SOURCES Iceberg3D/dependencies/glad/src/glad.c)
