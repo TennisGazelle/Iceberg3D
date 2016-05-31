@@ -5,9 +5,6 @@ project(Iceberg3D)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED on)
 
-# Set path to cmake modules
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake-modules")
-
 # Include OpenGL physics
 message("<Finding OpenGL>")
 find_package(OpenGL REQUIRED)
