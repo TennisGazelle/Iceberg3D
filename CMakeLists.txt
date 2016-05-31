@@ -10,36 +10,21 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake-modules")
 
 # Include SDL2, using windows binaries if necessary
 message("<Finding SDL2>")
-if(WIN32)
-    set(SDL2_PATH Iceberg3D/dependencies/sdl)
-endif(WIN32)
-find_package(SDL2 REQUIRED)
+find_package(SDL2 CONFIG REQUIRED)
 message("</Finding SDL2>")
 
 # Include FreeType2
 message("<Finding FreeType2>")
-if(WIN32)
-    set(FREETYPE_INCLUDE_DIR_ft2build Iceberg3D/dependencies/freetype2/include)
-    set(FREETYPE_INCLUDE_DIR_freetype2 Iceberg3D/dependencies/freetype2/include/freetype2)
-    set(FREETYPE_LIBRARY Iceberg3D/dependencies/freetype2/lib)
-endif(WIN32)
 find_package(Freetype REQUIRED)
 message("</Finding FreeType2>")
 
 # Include Assimp
 message("<Finding Assimp>")
-if(WIN32)
-    set(ASSIMP_INCLUDE_DIRS Iceberg3D/dependencies/assimp/include)
-    set(ASSIMP_LIBRARIES Iceberg3D/dependencies/assimp/lib)
-endif(WIN32)
-find_package(Assimp REQUIRED)
+find_package(Assimp CONFIG REQUIRED)
 message("</Finding Assimp>")
 
 # Include Bullet physics
 message("<Finding Bullet>")
-if(WIN32)
-    set(BULLET_ROOT Iceberg3D/dependencies/bullet)
-endif(WIN32)
 find_package(Bullet REQUIRED)
 message("</Finding Bullet>")
 
@@ -77,7 +62,7 @@ source_group("Headers" FILES ${PROJECT_HEADERS})
 source_group("Sources" FILES ${PROJECT_SOURCES})
 source_group("Dependencies" FILES ${DEPENDENCY_SOURCES})
 
-add_library(${PROJECT_NAME} ${PROJECT_HEADERS}
+add_executable(${PROJECT_NAME} ${PROJECT_HEADERS}
                             ${PROJECT_SOURCES}
                             ${PROJECT_SHADERS}
                             ${PROJECT_CONFIGS}
