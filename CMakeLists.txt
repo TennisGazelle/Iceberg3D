@@ -30,10 +30,7 @@ find_package(assimp REQUIRED)
 find_package(Bullet REQUIRED)
 
 # Include glm
-if(WIN32)
-	set(GLM_INCLUDE_DIRS Iceberg3D/dependencies/glm/)
-endif(WIN32)
-find_package(glm CONFIG REQUIRED)
+find_package(GLM REQUIRED)
 
 if(MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
