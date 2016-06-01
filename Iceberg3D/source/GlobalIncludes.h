@@ -4,6 +4,11 @@
 // TODO: Remove this after decoupling OpenGL rendering from logic
 #include "GLHeaders.h"
 
+// SDL
+#include "SDL.h"
+#include "SDL_opengl.h"
+#include "SDL_image.h"
+
 // Assimp
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
