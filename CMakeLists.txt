@@ -5,14 +5,27 @@ project(Iceberg3D)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED on)
 
+# Set path to cmake modules
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake-modules")
+
 # Include OpenGL physics
 message("<Finding OpenGL>")
 find_package(OpenGL REQUIRED)
 message("</Finding OpenGL>")
 
-# Include SDL2, using windows binaries if necessary
+# Include SDL2
 message("<Finding SDL2>")
-find_package(SDL2 CONFIG REQUIRED)
+find_package(SDL2 REQUIRED)
+message("</Finding SDL2>")
+
+# Include SDL2_image
+message("<Finding SDL2>")
+find_package(SDL2_image REQUIRED)
+message("</Finding SDL2>")
+
+# Include SDL2_ttf
+message("<Finding SDL2>")
+find_package(SDL2_ttf REQUIRED)
 message("</Finding SDL2>")
 
 # Include FreeType2
@@ -22,7 +35,7 @@ message("</Finding FreeType2>")
 
 # Include Assimp
 message("<Finding Assimp>")
-find_package(Assimp CONFIG REQUIRED)
+find_package(assimp REQUIRED)
 message("</Finding Assimp>")
 
 # Include Bullet physics
@@ -32,6 +45,9 @@ message("</Finding Bullet>")
 
 # Include glm
 message("<Finding glm>")
+if(WIN32)
+	set(GLM_INCLUDE_DIRS Iceberg3D/dependencies/glm/)
+endif(WIN32)
 find_package(glm CONFIG REQUIRED)
 message("</Finding glm>")
 
